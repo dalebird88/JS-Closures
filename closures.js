@@ -154,11 +154,8 @@ counter = counterFactory(10);
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    var x = 0;
-    setTimeout(function() {
-      console.log(x);
-      x++;
-    }, i * 1000)
+
+    setTimeout(newScope.bind(null,i), i * 1000);
   }
 
   function newScope(i) {
@@ -174,7 +171,8 @@ timeOutCounter();
 
 //////////////////PROBLEM 8////////////////////
 
-var funcArray = [function (){ return 0;},
+var funcArray = [
+  function (){ return 0;},
   function (){ return 1;},
   function (){ return 2;},
   function (){ return 3;},
