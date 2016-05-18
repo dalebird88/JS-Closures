@@ -135,13 +135,15 @@ counter = counterFactory(10);
     // Anything that is being returned is made public and can be invoked from outside our lexical scope
 
     return {
-      // Code here.
+      publicMethod: function () {
+        return privateMethod();
+      }
     };
 
   })();
 
 //Uncomment this after you create your public method
-//   module.publicMethod();
+   module.publicMethod();
 
 
 
@@ -152,8 +154,10 @@ counter = counterFactory(10);
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
+    var x = 0;
     setTimeout(function() {
-      console.log(i);
+      console.log(x);
+      x++;
     }, i * 1000)
   }
 
@@ -170,17 +174,20 @@ timeOutCounter();
 
 //////////////////PROBLEM 8////////////////////
 
-var funcArray = [];
+var funcArray = [function (){ return 0;},
+  function (){ return 1;},
+  function (){ return 2;},
+  function (){ return 3;},
+  function (){ return 4;},
+  function (){ return 5;}];
 
-/*
-  Make the following code work
 
-  funcArray[0]() //0
-  funcArray[1]() //1
-  funcArray[2]() //2
-  funcArray[3]() //3
-  funcArray[4]() //4
-  funcArray[5]() //5
 
-  *Hint: Don't let this fool you. Break down what's really happening here.
-*/
+  funcArray[0](); //0
+  funcArray[1](); //1
+  funcArray[2](); //2
+  funcArray[3](); //3
+  funcArray[4](); //4
+  funcArray[5](); //5
+
+//  *Hint: Don't let this fool you. Break down what's really happening here.
